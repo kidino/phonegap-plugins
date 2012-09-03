@@ -53,6 +53,13 @@ public class ExtractZipFilePlugin extends Plugin {
 					  int count;
 					  byte data[] = new byte[102222];
 					  String fileName = dirToInsert + entry.getName();
+					  
+					  if ( entry.getName().indexOf(File.separator) > -1 ) {
+						  String dirtobuild = entry.getName().substring(0, entry.getName().lastIndexOf(File.separator));
+						  File outFile1 = new File(dirToInsert + dirtobuild);
+						  outFile1.mkdirs();
+					  }
+					  
 					  File outFile = new File(fileName);
 					  if (entry.isDirectory()) 
 					  {
